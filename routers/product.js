@@ -88,6 +88,9 @@ router.put(`/:id`, async (req, res) => {
     return res.status(400).send("Invalid Product ID");
   }
   const category = await Category.findById(req.body.category);
+  console.log(category);
+
+  // toSolve => categories set to underfine when trying to update
   if (!category) return res.status(400).send("Invalid Category");
 
   const product = await Product.findByIdAndUpdate(
@@ -107,9 +110,9 @@ router.put(`/:id`, async (req, res) => {
     },
     { new: true }
   );
-  if (!product) return res.status(404).send("the product connot be created!");
+  if (!product) return res.status(404).send("the product connot be updated");
 
-  res.send(product);
+  res.status(200).send(product);
 });
 
 // delete product

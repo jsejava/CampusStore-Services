@@ -16,8 +16,8 @@ app.use(bodyParser.json());
 app.use(morgan("tiny"));
 const secret = process.env.secret;
 const api = process.env.API_URL;
-app.use(jwtAut);
-app.use(errorHandler);
+//app.use(jwtAut);
+//app.use(errorHandler);
 app.use("/public/uploads", express.static(__dirname + "/public/uploads"));
 
 // routes
@@ -42,8 +42,14 @@ mongoose
     console.log(err);
   });
 
-// server
+// development server
 app.listen(3000, () => {
   console.log(api);
   console.log("server is running http://localhost:3000");
 });
+
+// producttion
+// var server = app.listen(process.env.PORT || 3000, function () {
+//   var port = server.address().port;
+//   console.log("Express is working on port " + port);
+// });
