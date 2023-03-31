@@ -64,7 +64,7 @@ const Register = (props) => {
     >
       <FormContainer title={"Register"}>
         <Input
-          placeholder={"Enter ID Nber"}
+          placeholder={"Enter ID Number"}
           name={"ID"}
           id={"ID"}
           value={ID}

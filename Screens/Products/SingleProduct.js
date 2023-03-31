@@ -60,7 +60,7 @@ const SingleProduct = (props) => {
       </ScrollView>
       <View style={styles.bottomContainer}>
         <Left>
-          <Text style={styles.price}>$ {item.price}</Text>
+          <Text style={styles.price}>₵ {item.price}</Text>
         </Left>
         <Right>
           <EasyButton

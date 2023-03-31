@@ -120,7 +120,7 @@ const Confirm = (props) => {
           ) : null}
           <View>
             <EasyButton large primary onPress={confirmOrder}>
-              <Text style={styles.buttonText}>Continue</Text>
+              <Text style={styles.buttonText}>Order Now</Text>
             </EasyButton>
             {/* <Button title="Place order" onPress={confirmOrder} /> */}
           </View>

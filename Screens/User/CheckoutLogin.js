@@ -46,9 +46,9 @@ const CheckoutLogin = (props) => {
   };
 
   return (
-    <FormContainer title={"Login to checkout"}>
+    <FormContainer title={"Login Order"}>
       <Input
-        placeholder={"Enter ID Nber"}
+        placeholder={"Enter ID Number"}
         name={"ID"}
         id={"ID"}
         value={ID}

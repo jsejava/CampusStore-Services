@@ -53,7 +53,7 @@ const Cart = (props) => {
           />
           <View style={styles.bottomContainer}>
             <Left>
-              <Text style={styles.price}>$ {total}</Text>
+              <Text style={styles.price}>₵ {total}</Text>
             </Left>
             <Right>
               <EasyButton danger medium onPress={() => props.clearCart()}>
