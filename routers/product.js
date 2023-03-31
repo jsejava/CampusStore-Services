@@ -4,6 +4,8 @@ const { Product } = require("../models/product");
 const { Category } = require("../models/category");
 const mongoose = require("mongoose");
 const multer = require("multer");
+const cloudinary = require("../cloudinary/cloudinary");
+//const cloudinary = require("../public/uploads/");
 
 const FILE_TYPE_MAP = {
   "image/png": "png",
@@ -61,8 +63,11 @@ router.post(`/`, uploadOptions.single("image"), async (req, res) => {
   if (!category) return res.status(400).send("Invalid Category");
   const file = req.file;
   if (!file) return res.status(400).send("No image in the request");
+
   const fileName = req.file.filename;
+
   const basePath = `${req.protocol}://${req.get("host")}/public/uploads/`;
+
   let product = new Product({
     name: req.body.name,
     description: req.body.description,
@@ -76,23 +81,22 @@ router.post(`/`, uploadOptions.single("image"), async (req, res) => {
     image: `${basePath}${fileName}`,
     countInStock: req.body.countInStock,
   });
-  console.log(`${basePath}${fileName}`);
+
   await product.save();
   if (!product) return res.status(500).send("The product connot be created");
   res.send(product);
 });
 
 // update a product
-router.put(`/:id`, async (req, res) => {
+router.put(`/:id`, uploadOptions.single("image"), async (req, res) => {
   if (!mongoose.isValidObjectId(req.params.id)) {
     return res.status(400).send("Invalid Product ID");
   }
   const category = await Category.findById(req.body.category);
-  console.log(category);
 
-  // toSolve => categories set to underfine when trying to update
-  if (!category) return res.status(400).send("Invalid Category");
-
+  if (!category) {
+    return res.status(400).send("Invalid Category");
+  }
   const product = await Product.findByIdAndUpdate(
     req.params.id,
     {
@@ -110,9 +114,9 @@ router.put(`/:id`, async (req, res) => {
     },
     { new: true }
   );
-  if (!product) return res.status(404).send("the product connot be updated");
+  if (!product) return res.status(404).send("the product connot be created!");
 
-  res.status(200).send(product);
+  res.send(product);
 });
 
 // delete product

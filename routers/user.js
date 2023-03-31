@@ -27,14 +27,15 @@ router.post(`/`, async (req, res) => {
   let user = new User({
     name: req.body.name,
     email: req.body.email,
+    ID: req.body.ID,
     passwordHash: bcrypt.hashSync(req.body.password, 10),
     phone: req.body.phone,
     isAdmin: req.body.isAdmin,
-    apartement: req.body.apartement,
-    zip: req.body.zip,
-    city: req.body.city,
-    country: req.body.country,
-    street: req.body.street,
+    hostel: req.body.hostel,
+    room: req.body.room,
+    // city: req.body.city,
+    // country: req.body.country,
+    // street: req.body.street,
   });
   user = await user.save();
 
@@ -48,14 +49,17 @@ router.post(`/register`, async (req, res) => {
   let user = new User({
     name: req.body.name,
     email: req.body.email,
+    ID: req.body.ID,
     passwordHash: bcrypt.hashSync(req.body.password, 10),
     phone: req.body.phone,
     isAdmin: req.body.isAdmin,
-    apartement: req.body.apartement,
-    zip: req.body.zip,
-    city: req.body.city,
-    country: req.body.country,
-    street: req.body.street,
+    hostel: req.body.hostel,
+    room: req.body.room,
+    // apartement: req.body.apartement,
+    // zip: req.body.zip,
+    // city: req.body.city,
+    // country: req.body.country,
+    // street: req.body.street,
   });
   user = await user.save();
 
@@ -66,7 +70,7 @@ router.post(`/register`, async (req, res) => {
 
 // user login
 router.post(`/login`, async (req, res) => {
-  let user = await User.findOne({ email: req.body.email });
+  let user = await User.findOne({ ID: req.body.ID });
   const secret = process.env.secret;
 
   if (!user) {
@@ -81,7 +85,7 @@ router.post(`/login`, async (req, res) => {
       secret,
       { expiresIn: "1d" }
     );
-    return res.status(200).send({ user: user.email, token: token });
+    return res.status(200).send({ user: user.ID, token: token });
   } else {
     return res.status(400).send("password wrong");
   }

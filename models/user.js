@@ -5,7 +5,11 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  email: {
+  // email: {
+  //   type: String,
+  //   required: true,
+  // },
+  ID: {
     type: String,
     required: true,
   },
@@ -21,26 +25,26 @@ const userSchema = mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  apartement: {
+  hostel: {
     type: String,
     default: "",
   },
-  zip: {
+  room: {
     type: String,
     default: "",
   },
-  street: {
-    type: String,
-    default: "",
-  },
-  city: {
-    type: String,
-    default: "",
-  },
-  country: {
-    type: String,
-    default: "",
-  },
+  // street: {
+  //   type: String,
+  //   default: "",
+  // },
+  // city: {
+  //   type: String,
+  //   default: "",
+  // },
+  // country: {
+  //   type: String,
+  //   default: "",
+  // },
 
   countInStock: {
     type: Number,
